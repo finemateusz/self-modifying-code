@@ -4,9 +4,7 @@
 
 PrimeOS is a unique Virtual Machine (VM) project demonstrating the concept of "living code." The VM executes programs where instructions are represented by prime number factorizations (Universal Object Representation - UOR). The core demonstration showcases a UOR program that autonomously modifies its own instructions in a continuous loop, adapting its behavior to achieve externally set numerical goals. These goals are provided by an adaptive "Teacher" component in the backend. This iteration of the project expands the self-modification capabilities to include not just changing instruction operands but also altering instruction types in pre-defined "slots" within the code.
 
-## Approach (Novelty)
-
-The novelty of PrimeOS lies in several key areas:
+## Approach
 
 1.  **Universal Object Representation (UOR):** Instructions and data are not represented by fixed bytecodes but by integers derived from the unique factorization of prime numbers. Each instruction or data chunk has a distinct numerical representation based on specific primes raised to specific exponents. This allows for a flexible and mathematically grounded instruction set.
 2.  **Self-Modification at Multiple Levels:**
