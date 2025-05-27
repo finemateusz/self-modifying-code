@@ -119,6 +119,7 @@ The interaction between the UOR program (Learner) and the Flask backend (Teacher
 
 ## File List & Usage
 
+```
 ├── backend/
 │ ├── uor_programs/
 │ │ └── goal_seeker_demo.uor.txt # Generated UOR program
@@ -135,7 +136,7 @@ The interaction between the UOR program (Learner) and the Flask backend (Teacher
 ├── generate_goal_seeker_uor.py # Python script to generate the UOR program
 ├── phase1_vm_enhancements.py # Core PrimeOS VM logic, opcodes, UOR constructors
 └── README.md # This file
-
+```
 
 **How to Run:**
 
