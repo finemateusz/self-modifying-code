@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap');
+
+:root {
+    --background-color: #0a0f14; 
+    --text-color: #c0c5ce; 
+    --accent-color: #00ff9c; 
+    --secondary-accent-color: #ff70fd; 
+    --highlight-color: #ffd900; 
+    --error-color: #ff3366; 
+    --font-primary: 'Orbitron', sans-serif; 
+    --font-mono: 'Roboto Mono', monospace; 
+}
+
+body {
+    font-family: var(--font-mono);
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow: hidden; 
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1900px; 
+    height: calc(100vh - 30px); 
+    background-color: var(--background-color); 
+}
+
+.column {
+    padding: 15px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; 
+}
+
+.column-left {
+    flex-basis: 45%; 
+    padding-right: 10px; 
+}
+
+.column-right {
+    flex-basis: 55%; 
+    padding-left: 10px; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+header {
+    margin-bottom: 15px; 
+    text-align: center;
+    flex-shrink: 0; 
+}
+
+header h1 {
+    font-family: var(--font-primary);
+    color: var(--accent-color);
+    margin-bottom: 2px;
+    font-size: 2.8em;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px var(--accent-color), 0 0 10px var(--accent-color);
+}
+
+header h2 {
+    font-family: var(--font-primary);
+    color: var(--secondary-accent-color);
+    margin-top: 0;
+    font-size: 1.2em;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.purpose-panel {
+    font-size: 0.85em; 
+    color: var(--text-color);
+    margin-bottom: 15px; 
+    padding: 8px 0; 
+    border-bottom: 1px dashed rgba(var(--accent-color), 0.3); 
+    flex-shrink: 0;
+    max-height: 20vh; 
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+.purpose-panel strong { color: var(--highlight-color); }
+.purpose-panel code {
+    background-color: rgba(var(--accent-color), 0.1);
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.95em;
+    color: var(--accent-color);
+}
+
+.explanation-panel {
+    padding: 8px 0; /* Padding for top/bottom of the panel, around title and text */
+    margin-bottom: 15px; 
+    border-bottom: 1px dashed rgba(var(--accent-color), 0.3); 
+    flex-shrink: 0; /* Crucial: Do not allow this panel to shrink when siblings want space */
+    
+    /* --- FIXED HEIGHT APPROACH --- */
+    height: 7.5em; /* Adjust this value based on desired visible lines + title + padding */
+                     /* Calculation:
+                        Title (h3): font-size 1.2em * line-height (assume ~1.2) + margin-bottom 6px ~ 1.5em
+                        ExplanationText (#explanationText): font-size 0.9em * line-height 1.5 = 1.35em per line
+                        For 2 lines of text: 2 * 1.35em = 2.7em
+                        For 3 lines of text: 3 * 1.35em = 4.05em
+                        Padding (top 8px + bottom space for text) ~ 0.5em - 1em
+                        Total for 3 lines: ~1.5 (title) + 4.05 (text) + 1 (padding/spacing) = ~6.55em. 
+                        Let's use 7.5em to be safe for ~3 lines.
+                     */
+    display: flex; /* To control inner content flow */
+    flex-direction: column;
+    box-sizing: border-box; /* Padding and border included in height */
+}
+
+.explanation-panel h3 {
+    margin-top: 0;
+    color: var(--secondary-accent-color);
+    font-family: var(--font-primary);
+    font-size: 1.2em; 
+    margin-bottom: 6px; 
+    letter-spacing: 1px;
+    flex-shrink: 0; /* Title should not shrink */
+}
+
+#explanationText {
+    font-size: 0.9em; 
+    color: var(--text-color);
+    line-height: 1.5; 
+    flex-grow: 1; /* Allow text area to take remaining space within fixed height panel */
+    overflow-y: auto; /* Scroll the text if it exceeds the space */
+    min-height: 0; /* Important for flex-grow in a scrolling container */
+}
+
+.left-column-state-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+    margin-bottom: 15px; 
+    flex-grow: 1; /* This section will take up remaining vertical space */
+    overflow: hidden; /* Important: its children will scroll, not this container */
+}
+
+.left-column-state-details h3 { 
+    font-family: var(--font-primary);
+    color: var(--secondary-accent-color);
+    margin-top: 0;
+    margin-bottom: 6px; 
+    font-size: 1.0em; 
+    font-weight: 400;
+    letter-spacing: 1px;
+    flex-shrink: 0; /* Titles should not shrink */
+}
+
+.program-memory-box {
+    min-height: auto;
+    flex-shrink: 0; 
+    display: flex;
+    flex-direction: column;
+}
+
+.instruction-line-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 3px 0; 
+    min-height: 1.2em; 
+    flex-grow: 1; /* If program-memory-box has extra space */
+}
+
+#currentInstructionLine.instruction-text {
+    font-size: 0.95em; 
+    font-family: var(--font-mono);
+    color: var(--text-color);
+    padding: 2px 0; 
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out, color 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+#currentInstructionLine.instruction-text strong { color: var(--highlight-color); }
+#currentInstructionLine.fade-out { opacity: 0; }
+#currentInstructionLine.fade-in { opacity: 1; }
+#currentInstructionLine.modified-value { color: var(--accent-color); }
+
+
+.state-row { 
+    display: flex; 
+    flex-direction: row; 
+    gap: 15px; 
+    flex-grow: 1; /* Allow this row to use available space from parent */
+    overflow: hidden; /* Prevent children from breaking layout */
+    min-height: 0; /* Necessary for flex-grow in parent with overflow */
+}
+.state-row .state-box { 
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Children will scroll */
+    min-height: 0; /* Allow shrinking if necessary and content scrolls */
+}
+
+.horizontal-data-display {
+    background-color: transparent; 
+    color: var(--text-color);
+    padding: 2px 0; 
+    border: none; 
+    font-size: 0.85em; 
+    font-family: var(--font-mono);
+    white-space: normal;
+    word-break: break-word; 
+    line-height: 1.3; 
+    text-align: left; 
+    flex-grow: 1; /* Takes space within its .state-box */
+    overflow-y: auto; /* Enables scrolling */
+    min-height: 0; /* Allow shrinking */
+    /* max-height: 7vh; Removed, let flexbox manage within .state-box */
+}
+
+.controls {
+    margin-top: auto; /* Pushes to bottom if .left-column-state-details doesn't take all space */
+    margin-bottom: 10px; 
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px; 
+    flex-shrink: 0; 
+}
+.controls button {
+    font-family: var(--font-primary);
+    padding: 8px 10px; 
+    font-size: 0.85em; 
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 0; 
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.controls button:hover:not(:disabled) {
+    background-color: var(--accent-color);
+    color: var(--background-color);
+    box-shadow: 0 0 10px var(--accent-color);
+}
+.controls button:disabled {
+    border-color: rgba(var(--text-color), 0.3);
+    color: rgba(var(--text-color), 0.3);
+    cursor: not-allowed;
+}
+
+.status-line {
+    padding: 6px 0; 
+    font-size: 0.8em; 
+    color: var(--text-color);
+    border-top: 1px dashed rgba(var(--accent-color), 0.3);
+    text-align: center;
+    flex-shrink: 0; 
+    /* --- ADD THIS LINE --- */
+    min-height: 2.8em; /* Approx. for 2 lines: 0.8em font * 1.6 line-height * 2 lines + padding */
+    /* OR, if you always want it to try and fit two lines: */
+    /* height: 2.8em; */
+    /* overflow: hidden; */ /* Optional: if you want to hide text beyond this height */
+    /* text-overflow: ellipsis; */ /* Optional: if you want ellipsis for overflow (works best with white-space: nowrap which we don't want if errors wrap) */
+    display: flex; /* Optional: To center content vertically if using fixed height */
+    align-items: center; /* Optional: To center content vertically */
+    justify-content: center; /* Optional: To center content horizontally (already text-align: center) */
+    box-sizing: border-box; /* Include padding in height calculation */
+}
+.status-line strong { color: var(--highlight-color); }
+.status-line .error-text { color: var(--error-color); font-weight: bold; }
+
+
+/* Right Column: Main Output Area ONLY */
+.main-output-area {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px; 
+    width: 100%;
+    height: 100%;
+}
+
+#largeOutputDisplay {
+    font-family: var(--font-primary);
+    font-size: 28vw; 
+    font-weight: 700;
+    color: var(--highlight-color);
+    line-height: 0.85; 
+    text-align: center;
+    text-shadow: 0 0 20px var(--highlight-color), 0 0 40px rgba(var(--highlight-color), 0.7);
+    animation: pulse-output 2.5s infinite alternate ease-in-out;
+}
+
+@keyframes pulse-output {
+    from { opacity: 0.65; transform: scale(0.97); } 
+    to   { opacity: 1; transform: scale(1.03); }
+}
+
+@media (min-width: 1400px) { 
+    #largeOutputDisplay {
+        font-size: 350px; 
+    }
+}
+@media (max-height: 700px) { 
+    #largeOutputDisplay {
+        font-size: 35vh; 
+    }
+    header h1 { font-size: 2.5em; }
+    header h2 { font-size: 1.1em; }
+}
+
+/* General scrollbar styling */
+::-webkit-scrollbar { width: 6px; height: 6px; } 
+::-webkit-scrollbar-track { background: rgba(var(--accent-color), 0.03); }
+::-webkit-scrollbar-thumb { background: rgba(var(--accent-color), 0.4); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }

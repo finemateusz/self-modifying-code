@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrimeOS - Living Code Demo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Column: Explanations, Controls, and State Details -->
+        <div class="column column-left">
+            <header>
+                <h1>PRIMEOS VM</h1>
+                <h2>Living Code Demo</h2>
+            </header>
+
+            <div class="purpose-panel">What am I looking at: PrimeOS VM autonomously executes code that modifies its own instructions in a loop, adapting its behavior to achieve externally set numerical target provided by an adaptive "teacher" component.</p>
+            </div>
+
+            <div class="explanation-panel" id="explanationPanelContainer"> <!-- Added ID for JS height adjustment -->
+                <h3>Current Action:</h3>
+                <p id="explanationText">
+                    Welcome! Click "Initialize PrimeVM" to load the self-modifying program.
+                </p>
+            </div>
+
+            <!-- State Details Moved to Left Column -->
+            <div class="state-details left-column-state-details">
+                <div class="state-box program-memory-box">
+                    <h3>Program Memory (Current Instruction)</h3>
+                    <div id="programMemoryDisplay" class="instruction-line-container">
+                        <p id="currentInstructionLine" class="instruction-text">VM not initialized.</p>
+                    </div>
+                </div>
+
+                <!-- This .state-row will now correctly put Stack and Output Log side-by-side -->
+                <div class="state-row"> 
+                    <div class="state-box stack-box">
+                        <h3>Stack</h3>
+                        <div id="vmStack" class="horizontal-data-display">Empty</div>
+                    </div>
+                    <div class="state-box output-box">
+                        <h3>Output Log</h3>
+                        <div id="vmOutputLog" class="horizontal-data-display">No Output</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="initVmButton">Initialize PrimeVM</button>
+                <button id="stepVmButton" disabled>Step Instruction</button>
+                <button id="autoStepButton" disabled>Autostep</button>
+                <button id="stopAutoStepButton" disabled>Stop Autostep</button>
+            </div>
+            
+            <div class="status-line" id="vmStatusLine">
+                Status: IP: N/A | Stack Top: Empty | Halted: false | Error: None
+            </div>
+        </div>
+
+        <!-- Right Column: ONLY Live VM Main Output -->
+        <div class="column column-right">
+            <div class="main-output-area">
+                <div id="largeOutputDisplay">--</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/ui_updater.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
